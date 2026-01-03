@@ -122,6 +122,22 @@
             document.getElementById("scroll-progress").style.width = scrolled + "%";
         });
     </script>
+    <!-- Chatwoot SDK Integration -->
+    <script>
+      (function(d,t) {
+        var BASE_URL="https://crm-feg-chatwoot.a1dttr.easypanel.host";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: 'ChWz1dh6r8ciRdegtgWHo6Ns',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
