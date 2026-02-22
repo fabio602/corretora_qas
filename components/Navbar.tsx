@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Shield } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -36,16 +36,16 @@ const Navbar: React.FC = () => {
           <a href="/#modalidades" className="text-white hover:text-fg-gold transition-colors">Modalidades</a>
           <a href="/#vantagens" className="text-white hover:text-fg-gold transition-colors">Vantagens</a>
           {/* Seguro Cyber — destaque de primeira hierarquia */}
-          <a
-            href="/seguro-cyber"
+          <Link
+            to="/seguro-cyber"
             className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full border font-bold transition-all hover:scale-105 ${isCyberPage
-                ? 'bg-fg-gold text-fg-navy border-fg-gold'
-                : 'text-fg-gold border-fg-gold/40 hover:bg-fg-gold/10'
+              ? 'bg-fg-gold text-fg-navy border-fg-gold'
+              : 'text-fg-gold border-fg-gold/40 hover:bg-fg-gold/10'
               }`}
           >
             <Shield className="w-3.5 h-3.5" />
             Seguro Cyber
-          </a>
+          </Link>
           <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-white hover:text-fg-gold transition-colors font-bold">Blog</a>
           <a href="https://feghub.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-white border border-white/20 px-5 py-2 rounded-full font-medium hover:bg-white/10 transition-all">
             Portal do Corretor
@@ -69,9 +69,9 @@ const Navbar: React.FC = () => {
           <a href="/#quem-somos" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Quem Somos</a>
           <a href="/#modalidades" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Modalidades</a>
           <a href="/#vantagens" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Vantagens</a>
-          <a href="/seguro-cyber" className="flex items-center gap-2 text-fg-gold font-bold py-2" onClick={() => setMobileOpen(false)}>
+          <Link to="/seguro-cyber" className="flex items-center gap-2 text-fg-gold font-bold py-2" onClick={() => setMobileOpen(false)}>
             <Shield className="w-4 h-4" /> Seguro Cyber
-          </a>
+          </Link>
           <a href="/blog" target="_blank" rel="noopener noreferrer" className="block text-white hover:text-fg-gold transition-colors py-2 font-bold">Blog</a>
           <a href="https://feghub.netlify.app/" target="_blank" rel="noopener noreferrer" className="block text-white border border-white/20 px-6 py-3 rounded-full font-medium text-center hover:bg-white/10 transition-all">
             Portal do Corretor
