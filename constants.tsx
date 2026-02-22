@@ -12,7 +12,8 @@ import {
   Users,
   Clock,
   Smartphone,
-  Star
+  Star,
+  Wifi
 } from 'lucide-react';
 
 export const COLORS = {
@@ -66,6 +67,12 @@ export const SERVICES = [
     title: 'Depósito Recursal',
     description: 'Substitui os depósitos recursais e te dá liberdade para discurtir sua ação em juízo com tranquilidade.',
     icon: <ShieldCheck className="w-8 h-8" />
+  },
+  {
+    title: 'Seguro Cyber',
+    description: 'Proteção completa contra ataques hackers, ransomware, vazamento de dados e multas da LGPD. Blindagem digital 24h para sua empresa.',
+    icon: <Wifi className="w-8 h-8" />,
+    link: '/seguro-cyber'
   }
 ];
 
