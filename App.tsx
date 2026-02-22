@@ -11,6 +11,7 @@ import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import InsurersCarousel from './components/InsurersCarousel';
 import Blog from './components/Blog';
+import CyberInsurance from './components/CyberInsurance';
 
 function App() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -160,6 +161,7 @@ function App() {
           </main>
         } />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/seguro-cyber" element={<CyberInsurance />} />
       </Routes>
 
       <Footer />
