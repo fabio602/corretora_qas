@@ -1,8 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { SERVICES } from '../constants';
+import { ServiceItem } from '../types';
+import ServiceModal from './ServiceModal';
 
 const Services: React.FC = () => {
+  const [activeService, setActiveService] = useState<ServiceItem | null>(null);
+
   return (
     <section id="modalidades" className="py-32 bg-[#0a0f16] relative">
       <div className="container mx-auto px-6">
@@ -24,8 +28,8 @@ const Services: React.FC = () => {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mb-8 group-hover:rotate-6 transition-all duration-500 ${service.link
-                  ? 'bg-fg-gold/15 text-fg-gold group-hover:bg-fg-gold group-hover:text-fg-navy'
-                  : 'bg-fg-gold/10 text-fg-gold group-hover:bg-fg-gold group-hover:text-fg-navy'
+                ? 'bg-fg-gold/15 text-fg-gold group-hover:bg-fg-gold group-hover:text-fg-navy'
+                : 'bg-fg-gold/10 text-fg-gold group-hover:bg-fg-gold group-hover:text-fg-navy'
                 }`}>
                 <div className="scale-125">{service.icon}</div>
               </div>
@@ -52,16 +56,27 @@ const Services: React.FC = () => {
                     <svg className="w-5 h-5 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                   </a>
                 ) : (
-                  <div className="flex items-center text-fg-gold font-bold text-sm cursor-pointer overflow-hidden">
+                  <button
+                    onClick={() => setActiveService(service)}
+                    className="flex items-center text-fg-gold font-bold text-sm cursor-pointer overflow-hidden bg-transparent border-none p-0"
+                  >
                     <span className="relative translate-x-0 group-hover:translate-x-2 transition-transform duration-300">SOLICITAR ANÁLISE</span>
                     <svg className="w-5 h-5 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                  </div>
+                  </button>
                 )}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      {activeService && (
+        <ServiceModal
+          service={activeService}
+          onClose={() => setActiveService(null)}
+        />
+      )}
     </section>
   );
 };

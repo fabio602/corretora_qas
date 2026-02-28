@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -15,6 +15,8 @@ import CyberInsurance from './components/CyberInsurance';
 
 function App() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const location = useLocation();
+
 
   useEffect(() => {
     const observerOptions = {
@@ -36,7 +38,7 @@ function App() {
     return () => {
       revealElements.forEach(el => observer.unobserve(el));
     };
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-[#0a0f16] overflow-x-hidden">

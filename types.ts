@@ -1,6 +1,22 @@
 
 import React from 'react';
 
+export interface ServiceFormField {
+  name: string;
+  label: string;
+  type: 'text' | 'email' | 'tel' | 'number' | 'textarea';
+  placeholder: string;
+  required?: boolean;
+}
+
+export interface ServiceItem {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  link?: string;
+  formFields?: ServiceFormField[];
+}
+
 export interface ServiceCardProps {
   title: string;
   description: string;
