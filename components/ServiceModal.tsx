@@ -159,20 +159,51 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, onClose }) => {
                                 </div>
                                 <div>
                                     <label style={labelStyle}>Telefone *</label>
-                                    <input name="Telefone" type="tel" required placeholder="(99) 99999-9999" style={inputStyle} />
+                                    <input name="Telefone" type="tel" required placeholder="(99) 99999-9999" style={inputStyle} onChange={(e) => {
+                                        let v = e.target.value.replace(/\D/g, '');
+                                        if (v.length > 11) v = v.slice(0, 11);
+                                        v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+                                        v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+                                        e.target.value = v;
+                                    }} />
                                 </div>
                             </div>
 
-                            {service.formFields?.map((field) => (
-                                <div key={field.name}>
-                                    <label style={labelStyle}>{field.label}{field.required ? ' *' : ''}</label>
-                                    {field.type === 'textarea' ? (
-                                        <textarea name={field.name} placeholder={field.placeholder} rows={3} style={{ ...inputStyle, resize: 'none' }} />
-                                    ) : (
-                                        <input name={field.name} type={field.type} placeholder={field.placeholder} required={field.required} style={inputStyle} />
-                                    )}
-                                </div>
-                            ))}
+                            {service.formFields?.map((field) => {
+                                let handleChange = undefined;
+                                if (field.name.includes('CNPJ')) {
+                                    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                                        let v = e.target.value.replace(/\D/g, '');
+                                        if (v.length > 14) v = v.slice(0, 14);
+                                        v = v.replace(/^(\d{2})(\d)/, '$1.$2');
+                                        v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                                        v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                                        v = v.replace(/(\d{4})(\d)/, '$1-$2');
+                                        e.target.value = v;
+                                    };
+                                } else if (field.name.includes('Valor')) {
+                                    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                                        let v = e.target.value.replace(/\D/g, '');
+                                        if (!v) {
+                                            e.target.value = '';
+                                            return;
+                                        }
+                                        const num = Number(v) / 100;
+                                        e.target.value = num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                    };
+                                }
+
+                                return (
+                                    <div key={field.name}>
+                                        <label style={labelStyle}>{field.label}{field.required ? ' *' : ''}</label>
+                                        {field.type === 'textarea' ? (
+                                            <textarea name={field.name} placeholder={field.placeholder} rows={3} style={{ ...inputStyle, resize: 'none' }} />
+                                        ) : (
+                                            <input name={field.name} type={field.type} placeholder={field.placeholder} required={field.required} style={inputStyle} onChange={handleChange} />
+                                        )}
+                                    </div>
+                                );
+                            })}
 
                             <button type="submit" style={submitBtnStyle}>
                                 <Send size={16} />

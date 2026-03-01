@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
           <a href="/#inicio" className="text-white hover:text-fg-gold transition-colors">Início</a>
           <a href="/#quem-somos" className="text-white hover:text-fg-gold transition-colors">Quem Somos</a>
-          <a href="/#modalidades" className="text-white hover:text-fg-gold transition-colors">Modalidades</a>
+          <a href="/#modalidades" className="text-white hover:text-fg-gold transition-colors">Modalidades Seguro Garantia</a>
           <a href="/#vantagens" className="text-white hover:text-fg-gold transition-colors">Vantagens</a>
           {/* Seguro Cyber — destaque de primeira hierarquia */}
           <Link
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
         <div className="md:hidden bg-fg-navy/95 backdrop-blur-lg border-t border-white/5 px-6 py-6 space-y-4">
           <a href="/#inicio" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Início</a>
           <a href="/#quem-somos" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Quem Somos</a>
-          <a href="/#modalidades" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Modalidades</a>
+          <a href="/#modalidades" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Modalidades Seguro Garantia</a>
           <a href="/#vantagens" className="block text-white hover:text-fg-gold transition-colors py-2" onClick={() => setMobileOpen(false)}>Vantagens</a>
           <Link to="/seguro-cyber" className="flex items-center gap-2 text-fg-gold font-bold py-2" onClick={() => setMobileOpen(false)}>
             <Shield className="w-4 h-4" /> Seguro Cyber

@@ -44,7 +44,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Essencial para empresas que participam de concorrências públicas ou privadas, garantindo a assinatura do contrato.',
     icon: <FileCheck2 className="w-8 h-8" />,
     formFields: [
-      { name: 'Orgao_Licitante', label: 'Órgão licitante', type: 'text', placeholder: 'Ex: Prefeitura Municipal de...', required: true },
+      { name: 'CNPJ', label: 'Seu CNPJ', type: 'text', placeholder: 'Ex: 00.000.000/0001-00', required: true },
       { name: 'Numero_Edital', label: 'Número do edital / pregão', type: 'text', placeholder: 'Ex: Pregão 001/2025' },
       { name: 'Valor_Contrato', label: 'Valor estimado do contrato (R$)', type: 'text', placeholder: 'Ex: 500.000,00' },
     ]
@@ -54,6 +54,7 @@ export const SERVICES: ServiceItem[] = [
     description: 'Assegura o cumprimento integral das obrigações contratuais de construção, fornecimento ou prestação de serviços.',
     icon: <HardHat className="w-8 h-8" />,
     formFields: [
+      { name: 'CNPJ', label: 'Seu CNPJ', type: 'text', placeholder: 'Ex: 00.000.000/0001-00', required: true },
       { name: 'Tomador_Servico', label: 'Tomador / Contratante', type: 'text', placeholder: 'Nome da empresa contratante', required: true },
       { name: 'Objeto_Contrato', label: 'Objeto do contrato', type: 'text', placeholder: 'Ex: Construção civil, fornecimento...' },
       { name: 'Valor_Garantia', label: 'Valor da garantia (R$)', type: 'text', placeholder: 'Ex: 100.000,00' },
@@ -65,7 +66,8 @@ export const SERVICES: ServiceItem[] = [
     description: 'Substitui depósitos recursais ou cauções em processos judiciais, preservando o fluxo de caixa da sua empresa.',
     icon: <Gavel className="w-8 h-8" />,
     formFields: [
-      { name: 'Numero_Processo', label: 'Número do processo', type: 'text', placeholder: 'Ex: 1234567-89.2024.8.26.0001', required: true },
+      { name: 'CNPJ_Tomador', label: 'CNPJ do Tomador', type: 'text', placeholder: 'Ex: 00.000.000/0001-00', required: true },
+      { name: 'Numero_Processo', label: 'Número do processo', type: 'text', placeholder: 'Ex: 1234567-89.2024.8.26.0001' },
       { name: 'Vara_Tribunal', label: 'Vara / Tribunal', type: 'text', placeholder: 'Ex: 3ª Vara Cível de Sorocaba' },
       { name: 'Valor_Deposito', label: 'Valor do depósito a substituir (R$)', type: 'text', placeholder: 'Ex: 80.000,00' },
     ]
@@ -95,7 +97,8 @@ export const SERVICES: ServiceItem[] = [
     description: 'Substitui os depósitos recursais e te dá liberdade para discurtir sua ação em juízo com tranquilidade.',
     icon: <ShieldCheck className="w-8 h-8" />,
     formFields: [
-      { name: 'Numero_Processo', label: 'Número do processo trabalhista', type: 'text', placeholder: 'Ex: 0001234-56.2024.5.15.0001', required: true },
+      { name: 'CNPJ_Tomador', label: 'CNPJ do Tomador', type: 'text', placeholder: 'Ex: 00.000.000/0001-00', required: true },
+      { name: 'Numero_Processo', label: 'Número do processo trabalhista', type: 'text', placeholder: 'Ex: 0001234-56.2024.5.15.0001' },
       { name: 'Tribunal', label: 'Tribunal Regional do Trabalho (TRT)', type: 'text', placeholder: 'Ex: TRT 15ª Região' },
       { name: 'Valor_Deposito', label: 'Valor do depósito recursal (R$)', type: 'text', placeholder: 'Ex: 15.000,00' },
     ]

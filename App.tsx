@@ -95,6 +95,7 @@ function App() {
                         <input type="hidden" name="_subject" value="Nova Solicitação de Proposta (Site F&G)" />
                         <input type="hidden" name="_captcha" value="false" />
                         <input type="hidden" name="_template" value="table" />
+                        <input type="hidden" name="_cc" value="joaovictors@gmail.com" />
 
                         <div>
                           <label htmlFor="form-name" className="block text-sm font-bold text-gray-700 mb-1">Nome</label>
@@ -106,7 +107,13 @@ function App() {
                         </div>
                         <div>
                           <label htmlFor="form-phone" className="block text-sm font-bold text-gray-700 mb-1">Telefone</label>
-                          <input id="form-phone" name="phone" type="tel" placeholder="Ex: (99) 99999-9999" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
+                          <input id="form-phone" name="phone" type="tel" placeholder="Ex: (99) 99999-9999" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" onChange={(e) => {
+                            let v = e.target.value.replace(/\D/g, '');
+                            if (v.length > 11) v = v.slice(0, 11);
+                            v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+                            v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+                            e.target.value = v;
+                          }} />
                         </div>
                         <button type="submit" className="w-full bg-fg-navy text-white font-bold py-4 rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-2">
                           Solicitar proposta agora

@@ -148,7 +148,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Vertical Navigation / Indicator */}
-      <div className="absolute left-10 bottom-10 hidden md:flex flex-col items-center gap-6">
+      <div className="absolute left-10 bottom-10 hidden 2xl:flex flex-col items-center gap-6">
         <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-fg-gold"></div>
         <div className="text-[10px] text-white/40 uppercase tracking-[0.4em] transform rotate-180 flex items-center" style={{ writingMode: 'vertical-rl' }}>
           Explore o Futuro das Garantias
