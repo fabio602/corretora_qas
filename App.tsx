@@ -91,34 +91,50 @@ function App() {
                   </div>
                   <div className="flex flex-col sm:flex-row justify-center gap-8 pt-6 reveal-right w-full lg:w-auto">
                     <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl">
-                      <form action="https://formsubmit.co/fabio@fegsegurogarantia.com.br" method="POST" className="space-y-4 text-left">
-                        <input type="hidden" name="_subject" value="Nova Solicitação de Proposta (Site F&G)" />
-                        <input type="hidden" name="_captcha" value="false" />
-                        <input type="hidden" name="_template" value="table" />
-                        <input type="hidden" name="_cc" value="joaovictors@gmail.com" />
+                      {formStatus === 'success' ? (
+                        <div className="flex flex-col items-center text-center py-8 gap-4">
+                          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-4xl">✓</div>
+                          <h3 className="text-xl font-bold text-gray-900">Solicitação enviada!</h3>
+                          <p className="text-gray-500 text-sm">Nossa equipe entrará em contato em breve.</p>
+                        </div>
+                      ) : (
+                        <form className="space-y-4 text-left" onSubmit={async (e) => {
+                          e.preventDefault();
+                          setFormStatus('submitting');
+                          const data = new FormData(e.currentTarget);
+                          try {
+                            await fetch('https://formsubmit.co/ajax/fabio@fegsegurogarantia.com.br', { method: 'POST', body: data });
+                          } catch { /* ignore */ }
+                          setFormStatus('success');
+                        }}>
+                          <input type="hidden" name="_subject" value="Nova Solicitação de Proposta (Site F&G)" />
+                          <input type="hidden" name="_captcha" value="false" />
+                          <input type="hidden" name="_template" value="table" />
+                          <input type="hidden" name="_cc" value="joaovictors@gmail.com" />
 
-                        <div>
-                          <label htmlFor="form-name" className="block text-sm font-bold text-gray-700 mb-1">Nome</label>
-                          <input id="form-name" name="name" type="text" placeholder="Digite seu nome completo" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
-                        </div>
-                        <div>
-                          <label htmlFor="form-email" className="block text-sm font-bold text-gray-700 mb-1">Email</label>
-                          <input id="form-email" name="email" type="email" placeholder="Ex: raquel@exemplo.com" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
-                        </div>
-                        <div>
-                          <label htmlFor="form-phone" className="block text-sm font-bold text-gray-700 mb-1">Telefone</label>
-                          <input id="form-phone" name="phone" type="tel" placeholder="Ex: (99) 99999-9999" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" onChange={(e) => {
-                            let v = e.target.value.replace(/\D/g, '');
-                            if (v.length > 11) v = v.slice(0, 11);
-                            v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
-                            v = v.replace(/(\d)(\d{4})$/, '$1-$2');
-                            e.target.value = v;
-                          }} />
-                        </div>
-                        <button type="submit" className="w-full bg-fg-navy text-white font-bold py-4 rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-2">
-                          Solicitar proposta agora
-                        </button>
-                      </form>
+                          <div>
+                            <label htmlFor="form-name" className="block text-sm font-bold text-gray-700 mb-1">Nome</label>
+                            <input id="form-name" name="name" type="text" placeholder="Digite seu nome completo" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
+                          </div>
+                          <div>
+                            <label htmlFor="form-email" className="block text-sm font-bold text-gray-700 mb-1">Email</label>
+                            <input id="form-email" name="email" type="email" placeholder="Ex: raquel@exemplo.com" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" />
+                          </div>
+                          <div>
+                            <label htmlFor="form-phone" className="block text-sm font-bold text-gray-700 mb-1">Telefone</label>
+                            <input id="form-phone" name="phone" type="tel" placeholder="Ex: (99) 99999-9999" required className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:ring-2 focus:ring-fg-navy focus:border-transparent outline-none transition-all placeholder:text-gray-400" onChange={(e) => {
+                              let v = e.target.value.replace(/\D/g, '');
+                              if (v.length > 11) v = v.slice(0, 11);
+                              v = v.replace(/^(\d{2})(\d)/g, '($1) $2');
+                              v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+                              e.target.value = v;
+                            }} />
+                          </div>
+                          <button type="submit" disabled={formStatus === 'submitting'} className="w-full bg-fg-navy text-white font-bold py-4 rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg mt-2 disabled:opacity-60">
+                            {formStatus === 'submitting' ? 'Enviando...' : 'Solicitar proposta agora'}
+                          </button>
+                        </form>
+                      )}
                     </div>
                   </div>
                 </div>
